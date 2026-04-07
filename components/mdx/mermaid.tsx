@@ -1,18 +1,43 @@
-'use client';
+"use client";
 
-import { CodeBlock, Pre } from 'fumadocs-ui/components/codeblock';
-import mermaid from 'mermaid';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import mermaid from "mermaid";
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 
 function isDarkTheme() {
-  return document.documentElement.classList.contains('dark');
+  return document.documentElement.classList.contains("dark");
+}
+
+function subscribeToThemeChange(onStoreChange: () => void) {
+  if (typeof document === "undefined") {
+    return () => {};
+  }
+
+  const observer = new MutationObserver(onStoreChange);
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  return () => {
+    observer.disconnect();
+  };
+}
+
+function getThemeSnapshot() {
+  if (typeof document === "undefined") {
+    return false;
+  }
+
+  return isDarkTheme();
 }
 
 function initMermaid(dark: boolean) {
   mermaid.initialize({
     startOnLoad: false,
-    securityLevel: 'loose',
-    theme: dark ? 'dark' : 'default',
+    securityLevel: "loose",
+    theme: dark ? "dark" : "default",
     flowchart: {
       htmlLabels: true,
       useMaxWidth: false,
@@ -21,27 +46,14 @@ function initMermaid(dark: boolean) {
 }
 
 export function Mermaid({ chart }: { chart: string }) {
-  const id = useId().replace(/:/g, '-');
+  const id = useId().replace(/:/g, "-");
   const [svg, setSvg] = useState<string>();
   const [failed, setFailed] = useState(false);
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    setDark(isDarkTheme());
-
-    const observer = new MutationObserver(() => {
-      setDark(isDarkTheme());
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  const dark = useSyncExternalStore(
+    subscribeToThemeChange,
+    getThemeSnapshot,
+    () => false,
+  );
 
   useEffect(() => {
     let active = true;

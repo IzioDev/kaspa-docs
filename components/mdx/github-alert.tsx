@@ -1,4 +1,4 @@
-import { cn } from '@/lib/cn';
+import { cn } from "@/lib/cn";
 import {
   BadgeInfo,
   CircleAlert,
@@ -6,7 +6,7 @@ import {
   Lightbulb,
   TriangleAlert,
   type LucideIcon,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   Children,
   cloneElement,
@@ -14,28 +14,28 @@ import {
   type ComponentProps,
   type ReactElement,
   type ReactNode,
-} from 'react';
+} from "react";
 
 const GITHUB_ALERTS = {
   note: {
     icon: Info,
-    title: 'Note',
+    title: "Note",
   },
   tip: {
     icon: Lightbulb,
-    title: 'Tip',
+    title: "Tip",
   },
   important: {
     icon: BadgeInfo,
-    title: 'Important',
+    title: "Important",
   },
   warning: {
     icon: TriangleAlert,
-    title: 'Warning',
+    title: "Warning",
   },
   caution: {
     icon: CircleAlert,
-    title: 'Caution',
+    title: "Caution",
   },
 } as const;
 
@@ -47,16 +47,16 @@ type GitHubAlertProps = {
   type: GitHubAlertName;
 };
 
-type GitHubBlockquoteProps = ComponentProps<'blockquote'>;
+type GitHubBlockquoteProps = ComponentProps<"blockquote">;
 
 function isParagraphElement(
   node: ReactNode,
-): node is ReactElement<ComponentProps<'p'>> {
-  return isValidElement(node) && node.type === 'p';
+): node is ReactElement<ComponentProps<"p">> {
+  return isValidElement(node) && node.type === "p";
 }
 
 function isWhitespaceText(node: ReactNode): node is string {
-  return typeof node === 'string' && node.trim().length === 0;
+  return typeof node === "string" && node.trim().length === 0;
 }
 
 function parseAlertMarker(
@@ -76,7 +76,7 @@ function parseAlertMarker(
   };
 }
 
-function parseAlertParagraph(paragraph: ReactElement<ComponentProps<'p'>>): {
+function parseAlertParagraph(paragraph: ReactElement<ComponentProps<"p">>): {
   paragraphChildren: ReactNode[];
   title: string;
   type: GitHubAlertName;
@@ -92,7 +92,7 @@ function parseAlertParagraph(paragraph: ReactElement<ComponentProps<'p'>>): {
 
   const firstContent = paragraphChildren[firstContentIndex];
 
-  if (typeof firstContent !== 'string') {
+  if (typeof firstContent !== "string") {
     return null;
   }
 
@@ -125,7 +125,7 @@ export function GitHubAlert({ children, title, type }: GitHubAlertProps) {
   const { icon } = GITHUB_ALERTS[type];
 
   return (
-    <blockquote className={cn('github-alert', `github-alert-${type}`)}>
+    <blockquote className={cn("github-alert", `github-alert-${type}`)}>
       <div className="github-alert__title">
         <GitHubAlertIcon icon={icon} />
         <span>{title}</span>

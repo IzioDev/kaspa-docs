@@ -1,31 +1,29 @@
-import { RootProvider } from 'fumadocs-ui/provider/next';
-import './global.css';
-import { Open_Sans, Source_Code_Pro } from 'next/font/google';
-import type { Metadata } from 'next';
-import { appName } from '@/lib/shared';
+import { RootProvider } from "fumadocs-ui/provider/next";
+import { Open_Sans, Source_Code_Pro } from "next/font/google";
+import type { Metadata } from "next";
+import "./global.css";
 
 const openSans = Open_Sans({
-  subsets: ['latin'],
-  variable: '--font-open-sans',
+  subsets: ["latin"],
+  variable: "--font-open-sans",
 });
 
 const sourceCodePro = Source_Code_Pro({
-  subsets: ['latin'],
-  variable: '--font-source-code-pro',
+  subsets: ["latin"],
+  variable: "--font-source-code-pro",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://docs.kaspa.org'),
-  applicationName: appName,
   title: {
-    default: appName,
-    template: `%s | ${appName}`,
+    default: "Kaspa Docs",
+    template: "%s | Kaspa Docs",
   },
   description:
-    'Documentation for Kaspa - the fastest proof-of-work cryptocurrency powered by the GHOSTDAG protocol.',
+    "Documentation for Kaspa - the fastest proof-of-work cryptocurrency powered by the GHOSTDAG protocol.",
+  metadataBase: new URL("https://docs.kaspa.org"),
 };
 
-export default function Layout({ children }: LayoutProps<'/'>) {
+export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -33,7 +31,9 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
-        <RootProvider theme={{ defaultTheme: 'system' }}>{children}</RootProvider>
+        <RootProvider theme={{ defaultTheme: "system" }}>
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

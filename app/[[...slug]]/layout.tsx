@@ -1,7 +1,7 @@
-import { source } from '@/lib/source';
-import { DocsLayout } from 'fumadocs-ui/layouts/notebook';
-import { baseOptions } from '@/lib/layout.shared';
-import type { CSSProperties } from 'react';
+import { source } from "@/lib/source";
+import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+import { baseOptions } from "@/lib/layout.shared";
+import type { CSSProperties, ReactNode } from "react";
 
 const notebookContainerStyle = {
   gridTemplate: `"header header header"
@@ -12,7 +12,7 @@ const notebookContainerStyle = {
     var(--fd-toc-width)`,
 } as CSSProperties;
 
-export default function Layout({ children }: LayoutProps<'/[[...slug]]'>) {
+export default function Layout({ children }: LayoutProps<"/[[...slug]]">) {
   return (
     <DocsLayout
       tree={source.getPageTree()}
