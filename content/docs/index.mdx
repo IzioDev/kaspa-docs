@@ -1,13 +1,36 @@
 ---
-title: Hello World
-description: Your first document
+title: Kaspa Docs
+description: Builder docs for integrating Kaspa, learn about programmability model, attaching payload data, and running node infrastructure.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+Kaspa builder docs are split by the decisions you hit first: how to program app logic, how to connect over RPC, how to move funds, how to attach app data, and how to to run your own backend.
 
-## What is Next?
+If you are new to the stack, start with RPC connectivity and basic reads. From there, move into wallet flows, transaction payloads, or node operations depending on what your integration needs.
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card
+    title="Getting Started"
+    href="/integrate/getting-started"
+    description="Install the SDK, connect to a node over RPC, and read live DAG data in JavaScript, Rust, or Python."
+  />
+  <Card
+    title="Programmability"
+    href="/programmability"
+    description="Choose between Covenants, Based Apps, and Inline ZK depending on whether your product needs direct L1 rules, shared app state, or specialized proving flows."
+  />
+  <Card
+    title="Transaction Payload"
+    href="/integrate/transaction-payload"
+    description="Attach application data to standard Kaspa transactions and understand the practical size limits enforced by mempool mass rules."
+  />
+  <Card
+    title="Listen Accepted Transactions"
+    href="/integrate/accepted-transactions"
+    description="Follow accepted transactions with checkpoint-based pulls or live subscriptions, depending on whether you need IDs only or full transaction data."
+  />
+  <Card
+    title="Run a Node"
+    href="/integrate/kaspa-node"
+    description="Operate your own kaspad backend with UTXO indexing and wRPC enabled."
+  />
 </Cards>

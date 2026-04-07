@@ -1,12 +1,12 @@
-@import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
-@import 'fumadocs-ui/css/preset.css';
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
 
 :root {
   --font-sans:
-    var(--font-open-sans), 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+    var(--font-open-sans), "Open Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono:
-    var(--font-source-code-pro), 'Source Code Pro', ui-monospace, monospace;
+    var(--font-source-code-pro), "Source Code Pro", ui-monospace, monospace;
 
   --kaspa-docs-sidebar-width: 18.75rem;
   --kaspa-docs-content-width: 54rem;
@@ -119,7 +119,7 @@ body {
   box-shadow: none;
 }
 
-#nd-subnav[data-transparent='true'] {
+#nd-subnav[data-transparent="true"] {
   background: var(--kaspa-docs-menu-bg);
 }
 
@@ -155,7 +155,7 @@ body {
   background: var(--color-fd-secondary);
 }
 
-#nd-subnav [aria-label='GitHub'],
+#nd-subnav [aria-label="GitHub"],
 #nd-subnav [data-search],
 #nd-subnav [data-theme-toggle] button {
   color: var(--color-fd-muted-foreground);
@@ -183,8 +183,8 @@ body {
   border-radius: 0.35rem;
 }
 
-#nd-sidebar a[data-active='true'],
-#nd-sidebar button[data-active='true'] {
+#nd-sidebar a[data-active="true"],
+#nd-sidebar button[data-active="true"] {
   background: transparent;
   color: var(--color-fd-primary);
 }
@@ -212,7 +212,7 @@ body {
   margin-inline: auto;
 }
 
-#nd-page[data-full='true'] > * {
+#nd-page[data-full="true"] > * {
   max-width: min(80rem, 100%);
 }
 

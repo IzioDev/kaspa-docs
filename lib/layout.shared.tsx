@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { appName, gitConfig } from './shared';
+import Image from "next/image";
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { appName, gitConfig } from "./shared";
 
-type SharedNavOptions = NonNullable<BaseLayoutProps['nav']> & {
-  mode?: 'top' | 'auto';
+type SharedNavOptions = NonNullable<BaseLayoutProps["nav"]> & {
+  mode?: "top" | "auto";
 };
 
 export type SharedLayoutOptions = BaseLayoutProps & {
@@ -26,12 +26,12 @@ export function baseOptions(): SharedLayoutOptions {
           {appName}
         </span>
       ),
-      mode: 'top',
-      transparentMode: 'none',
+      mode: "top",
+      transparentMode: "none",
     },
     themeSwitch: {
       enabled: true,
-      mode: 'light-dark-system',
+      mode: "light-dark-system",
     },
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };

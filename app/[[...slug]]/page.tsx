@@ -1,11 +1,16 @@
-import { getPageImage, source } from '@/lib/source';
-import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/notebook/page';
-import { notFound } from 'next/navigation';
-import { getMDXComponents } from '@/components/mdx';
-import type { Metadata } from 'next';
-import { createRelativeLink } from 'fumadocs-ui/mdx';
+import { getPageImage, source } from "@/lib/source";
+import {
+  DocsBody,
+  DocsDescription,
+  DocsPage,
+  DocsTitle,
+} from "fumadocs-ui/layouts/notebook/page";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { createRelativeLink } from "fumadocs-ui/mdx";
+import { getMDXComponents } from "../../components/mdx";
 
-export default async function Page(props: PageProps<'/[[...slug]]'>) {
+export default async function Page(props: PageProps<"/[[...slug]]">) {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
@@ -22,7 +27,9 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
     >
       <div className="kaspa-docs-article">
         <DocsTitle>{page.data.title}</DocsTitle>
-        <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
+        <DocsDescription className="mb-0">
+          {page.data.description}
+        </DocsDescription>
         <DocsBody>
           <MDX
             components={getMDXComponents({
@@ -40,7 +47,9 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(props: PageProps<'/[[...slug]]'>): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/[[...slug]]">,
+): Promise<Metadata> {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
